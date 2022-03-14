@@ -16,6 +16,23 @@ namespace DB_FirstEntity
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Application["totalvisitor"] = 0;//100000
         }
+
+        protected void Session_Start(object sender ,EventArgs arg)
+        {
+            Application.Lock();
+            Application["totalvisitor"] = Convert.ToInt32(Application["totalvisitor"]) + 1;
+            Session["UserName"] = null;//Registering session key with current session
+            Session["LoginTime"] = null;
+            Application.UnLock();
+        }
+
+        //Application_End()
+        //Session_Start()
+        //Application_Error()
+        //Session_End()
+
+
     }
 }

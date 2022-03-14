@@ -5,8 +5,11 @@
 
 <h2>UserProfile</h2>
 
-Welcome:@ViewBag.UserName <br />
+Visitor No:*@ViewBag.TotalVisitors<br />
 
-Login Time:@ViewBag.LoginTime 
+Welcome:@ViewBag.UserName
+<br />
+
+Login Time:@ViewBag.LoginTime
 <span>@Html.ActionLink("Sign Out", "SignOut", "Account")</span>
 

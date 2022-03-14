@@ -10,6 +10,7 @@ using DB_FirstEntity.Models;
 
 namespace DB_FirstEntity.Controllers
 {
+    //[Authorize]
     public class StudentsController : Controller
     {
         private CollegeDbEntities1 db = new CollegeDbEntities1();
@@ -17,20 +18,20 @@ namespace DB_FirstEntity.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            if (Request.Cookies["PGDAC"] != null)
-            {
-                ViewBag.UserName = Request.Cookies["PGDAC"]["UserName"];
-                ViewBag.LoginTime = Request.Cookies["PGDAC"]["LoginTime"];
+            //if (Request.Cookies["PGDAC"] != null)
+            //{
+            //    ViewBag.UserName = Request.Cookies["PGDAC"]["UserName"];
+            //    ViewBag.LoginTime = Request.Cookies["PGDAC"]["LoginTime"];
                 var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
                 return View(students.ToList());
-                //return View();
-            }
-            else
-            {
-                //return View("Login","Account");
-                //return View()
-                return RedirectToAction("Login", "Account");
-            }            
+            //    //return View();
+            //}
+            //else
+            //{
+            //    //return View("Login","Account");
+            //    //return View()
+            //    return RedirectToAction("Login", "Account");
+            //}            
         }
 
         // GET: Students/Details/5
